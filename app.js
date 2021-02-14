@@ -23,4 +23,9 @@ io.listen(server);
 
 io.on('connection', (socket) => {
   console.log('New client connected');
+
+  socket.on('client-message', (data) => {
+    io.emit('server-message', data);
+  });
+
 });

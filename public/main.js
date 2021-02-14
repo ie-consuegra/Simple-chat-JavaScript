@@ -9,6 +9,14 @@ $(() => {
   $('#message-box').submit((e) => {
 
     e.preventDefault();
-    chat.append(`${message.val()}<br>`);
+
+    // Send the message
+    socket.emit('client-message', message.val());
+    message.val('');
+    // chat.append(`${message.val()}<br>`);
+  });
+
+  socket.on('server-message', (data) => {
+    chat.append(`${data}<br>`);
   });
 });
