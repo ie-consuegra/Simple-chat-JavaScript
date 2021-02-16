@@ -1,13 +1,13 @@
 $(() => {
 
-  const message = $('#chat-message');
-  const chat = $('#chat');
+  const message = $('#chat-message-text');
+  const chat = $('#chat-message-list');
+  const chatForm = $('#chat-form');
   const socket = io();
 
   message.focus();
 
-  $('#message-box').submit((e) => {
-
+  chatForm.submit((e) => {
     e.preventDefault();
 
     // Send the message
