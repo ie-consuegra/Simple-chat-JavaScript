@@ -7,5 +7,8 @@ module.exports = (server) => {
     socket.on('client-message', (data) => {
       io.emit('server-message', data);
     });
+    socket.on('new-client-connected', (data) => {
+      io.emit('server-new-client', data);
+    });
   });
 };

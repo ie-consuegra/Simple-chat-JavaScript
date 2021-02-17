@@ -7,13 +7,23 @@ $(() => {
 
   const user = prompt('Set your nickname');
 
-  const messagePackage = {};
-  message.focus();
-
   const getTime = () => {
     const d = new Date();
     return `${d.getHours()}:${d.getMinutes()}`;
   };
+
+  if (user) {
+    const client = {
+      nickname: user,
+      connectionTime: getTime(),
+      picID: user.split(' ')[0],
+    };
+    socket.emit('new-client-connected', client);
+  }
+
+  const messagePackage = {};
+  message.focus();
+
 
   chatForm.submit((e) => {
     e.preventDefault();
@@ -32,5 +42,9 @@ $(() => {
   socket.on('server-message', (data) => {
     addMessageToList(user, data);
     // chat.append(`${data}<br>`);
+  });
+
+  socket.on('server-new-client', (newClient) => {
+    addUserToList(newClient);
   });
 });

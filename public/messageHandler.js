@@ -6,6 +6,7 @@ function addMessageToList(who, messagePackage) {
   const imageElem = document.createElement('img');
   const messageTextElem = document.createElement('div');
   const messageTimeElem = document.createElement('div');
+  const picID = messagePackage.who.split(' ')[0];
 
   messageRowElem.classList.add('message-row');
   messageTextElem.classList.add('message-text');
@@ -17,11 +18,11 @@ function addMessageToList(who, messagePackage) {
   messageContentElem.appendChild(messageTimeElem);
 
   messageRowElem.appendChild(messageContentElem);
-  // messageRowElem.appendChild(messageContentElem);
 
   if (messagePackage.who === who) {
     messageRowElem.classList.add('you-message');
   } else {
+    imageElem.src = `https://picsum.photos/seed/${picID}/50/50`;
     messageRowElem.classList.add('other-message');
   }
 
