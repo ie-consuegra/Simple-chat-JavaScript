@@ -1,7 +1,6 @@
 $(() => {
 
   const message = $('#chat-message-text');
-  const chat = $('#chat-message-list');
   const chatForm = $('#chat-form');
   const socket = io();
 
@@ -36,12 +35,10 @@ $(() => {
     socket.emit('client-message', messagePackage);
     message.val('');
 
-    // chat.append(`${message.val()}<br>`);
   });
 
   socket.on('server-message', (data) => {
     addMessageToList(user, data);
-    // chat.append(`${data}<br>`);
   });
 
   socket.on('server-new-client', (newClient) => {
